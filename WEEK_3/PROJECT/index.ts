@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-// Define enums
+// Enums
 enum Role {
     USER = "user",
     ADMIN = "admin",
@@ -17,7 +17,7 @@ enum OrderStatus {
     Delivered = "delivered",
 }
 
-// Define interfaces
+// Interfaces
 interface IUser {
     id: string;
     fullName: string;
@@ -40,7 +40,7 @@ interface ICartItem {
     quantity: number;
 }
 
-// Define classes
+// Classes
 class RegisteredUser implements IUser {
     id: string;
     fullName: string;
