@@ -5,6 +5,7 @@ export class Laptop {
     hardDisk: HardDisk;
     os: OperatingSystem;
     powerState: boolean = false;
+    batteryCharge: number = 100;
     bitKind: BitKind;
     name: string;
   
@@ -38,19 +39,26 @@ export class Laptop {
           type: this.hardDisk.type,
         },
         systemType: this.os.kind,
+        batteryCharge: this.batteryCharge,
       };
     }
     switchOn() {
       this.powerState = true;
     }
   
-    update(version: number) {
+    update(version: number): boolean | string {
       if (version <= this.os.version) {
-        console.log("The version has to be higher than the previous");
-        return;
+         throw new Error("The version has to be higher than the previous");
+      }
+      if(isNan(version) || version <=0) {
+            throw new Error("Invalid update version number");
       }
       this.switchOn();
       this.os.update(version);
+
+      console.log(`Operating system updated successfully to version ${version}`);
+      return true;
+    
     }
   
     shutDown() {
