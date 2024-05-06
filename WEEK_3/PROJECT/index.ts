@@ -77,7 +77,7 @@ class Product implements IProduct {
         this.id = uuidv4();
     }
 
-    decreaseQuantity(amount: number = 1) {
+    decreaseQuantity(amount: number = 1): void {
         if (this.quantity >= amount) {
             this.quantity -= amount;
         } else {
@@ -94,13 +94,13 @@ class ShoppingCart {
         this.userId = userId;
     }
 
-    addProduct(product: IProduct, quantity: number = 1) {
+    addProduct(product: IProduct, quantity: number = 1): void {
         const newItem: ICartItem = { product, quantity };
         this.items.push(newItem);
         product.decreaseQuantity(quantity);
     }
 
-    removeProduct(productId: string) {
+    removeProduct(productId: string): void {
         const index = this.items.findIndex(
             (item) => item.product.id === productId
         );
